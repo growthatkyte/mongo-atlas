@@ -1,0 +1,98 @@
+{
+    "name": "analytic-user-match",
+    "type": "DATABASE",
+    "disabled": false,
+    "config": {
+        "collection": "users",
+        "database": "kyte-analytics",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "$or": [
+                {
+                    "$and": [
+                        {
+                            "operationType": "insert"
+                        },
+                        {
+                            "fullDocument.aid": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "fullDocument.aidMatchDate": {
+                                "$exists": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "$and": [
+                        {
+                            "operationType": "insert"
+                        },
+                        {
+                            "fullDocument.email": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "fullDocument.emailMatchDate": {
+                                "$exists": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "$and": [
+                        {
+                            "updateDescription.updatedFields.aid": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "updateDescription.updatedFields.aidMatchDate": {
+                                "$exists": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "$and": [
+                        {
+                            "updateDescription.updatedFields.email": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "updateDescription.updatedFields.emailMatchDate": {
+                                "$exists": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                }
+            ]
+        },
+        "operation_types": [
+            "INSERT",
+            "UPDATE"
+        ],
+        "project": {},
+        "service_name": "",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "defaultSendToHub"
+            }
+        }
+    }
+}

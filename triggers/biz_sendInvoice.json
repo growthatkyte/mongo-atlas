@@ -1,16 +1,20 @@
 {
-    "name": "kyte-user-account__Account",
+    "name": "biz_sendInvoice",
     "type": "DATABASE",
     "disabled": false,
     "config": {
-        "collection": "Account",
-        "database": "kyte-user-account",
+        "collection": "invoices",
+        "database": "kyte-admin",
         "full_document": true,
         "full_document_before_change": false,
-        "match": {},
-        "maximum_throughput": false,
+        "match": {
+            "fullDocument.sendToKyte": {
+                "$exists": true
+            },
+            "fullDocument.status": "paid"
+        },
         "operation_types": [
-            "INSERT"
+            "UPDATE"
         ],
         "project": {},
         "service_name": "",
@@ -21,7 +25,7 @@
     "event_processors": {
         "FUNCTION": {
             "config": {
-                "function_name": "userSendToIntercom"
+                "function_name": "bizSendInvoice"
             }
         }
     }
