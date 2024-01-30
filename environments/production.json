@@ -1,3 +1,8 @@
 {
-    "values": {}
+    "values": {
+        "ANALYTICS_URL": "https://kyte-admin-analytics.azurewebsites.net/queue?key=duVn7609876Z54hFbQEk3zC4CQm7Q7iCJUNE",
+        "SERVICE_QUEUE_URL": "https://kyte-admin-services.azurewebsites.net/queue?key=7Q7iCJUNEduVn76Z54hFbQEk3zC4CQm"
+    }
 }
+
+
