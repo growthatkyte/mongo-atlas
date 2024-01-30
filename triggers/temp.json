@@ -10,7 +10,10 @@
         "match": {},
         "maximum_throughput": false,
         "operation_types": [
-            "INSERT"
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "REPLACE"
         ],
         "project": {},
         "service_name": "mongodb-atlas",
