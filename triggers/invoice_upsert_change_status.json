@@ -1,0 +1,68 @@
+{
+    "name": "invoice_upsert_change_status",
+    "type": "DATABASE",
+    "disabled": false,
+    "config": {
+        "collection": "invoices",
+        "database": "kyte-admin",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "$or": [
+                {
+                    "operationType": "insert"
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.paidAt": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.canceledAt": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.expireDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['amounts.brl']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['amounts.usd']": {
+                        "$exists": true
+                    }
+                }
+            ],
+            "fullDocument.paidAt": {
+                "$exists": true
+            }
+        },
+        "operation_types": [
+            "INSERT",
+            "UPDATE",
+            "REPLACE"
+        ],
+        "project": {},
+        "service_name": "kyte-data",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "invoiceSendToHub"
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+{
+    "name": "user_upsert_subscription_info",
+    "type": "DATABASE",
+    "disabled": false,
+    "config": {
+        "collection": "users",
+        "database": "kyte-admin",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "$or": [
+                {
+                    "operationType": "insert"
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.email": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.country": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.os": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.firstPaymentDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.beforePaymentDays": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.paidAt']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.expireDate']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.toleranceDate']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.churn7dDate']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.churn30dDate']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.recurrence']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.intermediary']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['subscriptionStatus.paymentMethod']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.status": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.plan": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.recurrence": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.expireDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.toleranceDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.updatedAt": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.cronUpdatedAt": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.extraPlan": {
+                        "$exists": true
+                    }
+                }
+            ]
+        },
+        "operation_types": [
+            "UPDATE",
+            "REPLACE",
+            "INSERT"
+        ],
+        "project": {},
+        "service_name": "kyte-data",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "userSendToHub"
+            }
+        }
+    }
+}

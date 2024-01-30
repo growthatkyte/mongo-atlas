@@ -1,0 +1,95 @@
+{
+    "name": "kyte_admin__users",
+    "type": "DATABASE",
+    "disabled": false,
+    "config": {
+        "collection": "users",
+        "database": "kyte-admin",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "$or": [
+                {
+                    "operationType": "insert"
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.status": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.plan": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.recurrence": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.intermediary": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.expireDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.toleranceDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['extraPlan.plan']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['extraPlan.status']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['extraPlan.createdAt']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['extraPlan.expireDate']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['extraPlan.type']": {
+                        "$exists": true
+                    }
+                }
+            ]
+        },
+        "maximum_throughput": false,
+        "operation_types": [
+            "INSERT",
+            "UPDATE"
+        ],
+        "project": {},
+        "service_name": "kyte-data",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "defaultSendToHub"
+            }
+        }
+    }
+}

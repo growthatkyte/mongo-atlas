@@ -1,0 +1,7 @@
+{
+    "name": "DATABASES",
+    "value": {
+        "admin": "kyte-admin"
+    },
+    "from_secret": false
+}

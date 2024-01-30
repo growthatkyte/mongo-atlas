@@ -1,0 +1,58 @@
+{
+    "name": "kyte-admin__subscriptions",
+    "type": "DATABASE",
+    "disabled": false,
+    "config": {
+        "collection": "subscriptions",
+        "database": "kyte-admin",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "$or": [
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.status": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.plan": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.recurrence": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.expireDate": {
+                        "$exists": true
+                    }
+                }
+            ]
+        },
+        "maximum_throughput": false,
+        "operation_types": [
+            "INSERT",
+            "UPDATE",
+            "REPLACE"
+        ],
+        "project": {},
+        "service_name": "kyte-data",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "defaultSendToHub"
+            }
+        }
+    }
+}

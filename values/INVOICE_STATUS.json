@@ -1,0 +1,9 @@
+{
+    "name": "INVOICE_STATUS",
+    "value": {
+        "CREATED": "created",
+        "PAID": "paid",
+        "REFUNDED": "refunded"
+    },
+    "from_secret": false
+}

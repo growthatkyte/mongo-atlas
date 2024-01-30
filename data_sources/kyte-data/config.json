@@ -1,0 +1,10 @@
+{
+    "name": "kyte-data",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "Kyte-Data",
+        "readPreference": "primary",
+        "wireProtocolEnabled": false
+    },
+    "version": 1
+}

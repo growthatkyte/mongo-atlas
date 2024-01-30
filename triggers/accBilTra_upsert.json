@@ -1,0 +1,65 @@
+{
+    "name": "accBilTra_upsert",
+    "type": "DATABASE",
+    "disabled": true,
+    "config": {
+        "collection": "AccountBillingTransaction",
+        "database": "kyte-user-account",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "$or": [
+                {
+                    "operationType": "insert"
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.productId": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.signatureTransactionId": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.transactionReceipt": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.transactionDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.dateCreation": {
+                        "$exists": true
+                    }
+                }
+            ]
+        },
+        "operation_types": [
+            "INSERT",
+            "UPDATE",
+            "REPLACE"
+        ],
+        "project": {},
+        "service_name": "kyte-data",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "defaultSendToHub"
+            }
+        }
+    }
+}

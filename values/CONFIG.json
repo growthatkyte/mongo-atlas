@@ -1,0 +1,10 @@
+{
+    "name": "CONFIG",
+    "value": {
+        "databases": {
+            "admin": "kyte-admin"
+        },
+        "hubUrl": "https://kyte-admin-hub.azurewebsites.net/add-queue?key=7Q7iCJUNEduVn76Z54hFbQEk3zC4CQm"
+    },
+    "from_secret": false
+}
