@@ -1,7 +1,7 @@
 {
     "name": "biz_sendInvoice",
     "type": "DATABASE",
-    "disabled": false,
+    "disabled": true,
     "config": {
         "collection": "invoices",
         "database": "kyte-admin",
@@ -13,6 +13,7 @@
             },
             "fullDocument.status": "paid"
         },
+        "maximum_throughput": false,
         "operation_types": [
             "UPDATE"
         ],

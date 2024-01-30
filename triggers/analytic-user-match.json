@@ -1,7 +1,7 @@
 {
     "name": "analytic-user-match",
     "type": "DATABASE",
-    "disabled": false,
+    "disabled": true,
     "config": {
         "collection": "users",
         "database": "kyte-analytics",
@@ -78,6 +78,7 @@
                 }
             ]
         },
+        "maximum_throughput": false,
         "operation_types": [
             "INSERT",
             "UPDATE"
