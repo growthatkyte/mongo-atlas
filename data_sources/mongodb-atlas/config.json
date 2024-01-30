@@ -2,7 +2,7 @@
     "name": "mongodb-atlas",
     "type": "mongodb-atlas",
     "config": {
-        "clusterName": "Kyte-Development",
+        "clusterName": "Kyte-Data",
         "readPreference": "primary",
         "wireProtocolEnabled": false
     },
