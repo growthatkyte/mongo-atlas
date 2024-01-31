@@ -44,6 +44,7 @@
                 }
             ]
         },
+        "maximum_throughput": false,
         "operation_types": [
             "INSERT",
             "UPDATE",
