@@ -7,10 +7,72 @@
         "database": "kyte-admin",
         "full_document": true,
         "full_document_before_change": false,
-        "match": {},
+        "match": {
+            "$or": [
+                {
+                    "operationType": "insert"
+                },
+                {
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.plan": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.recurrence": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.intermediary": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.paymentMethod": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.paidAt": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.expireDate": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['amounts.brl']": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields['amounts.usd']": {
+                        "$exists": true
+                    }
+                }
+            ],
+            "fullDocument.invoiceId": {
+                "$exists": true
+            },
+            "fullDocument.paidAt": {
+                "$exists": true
+            },
+            "fullDocument.subscriptionId": {
+                "$exists": true
+            }
+        },
         "maximum_throughput": false,
         "operation_types": [
-            "INSERT"
+            "INSERT",
+            "UPDATE",
+            "REPLACE"
         ],
         "project": {},
         "service_name": "mongodb-atlas",
