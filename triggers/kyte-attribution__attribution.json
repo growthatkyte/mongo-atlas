@@ -9,7 +9,7 @@
         "full_document_before_change": false,
         "match": {
             "fullDocument.aid": {
-                "$exists": true
+                "$ne": null
             }
         },
         "maximum_throughput": false,
