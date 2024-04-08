@@ -8,23 +8,14 @@
         "full_document": true,
         "full_document_before_change": false,
         "match": {
-            "$and": [
+            "$or": [
                 {
-                    "fullDocument.aid": {
-                        "$ne": null
-                    }
+                    "operationType": "insert"
                 },
                 {
-                    "$or": [
-                        {
-                            "operationType": "insert"
-                        },
-                        {
-                            "updateDescription.updatedFields._forceTrigger": {
-                                "$exists": true
-                            }
-                        }
-                    ]
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
                 }
             ]
         },
