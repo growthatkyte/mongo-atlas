@@ -1,5 +1,5 @@
 {
-    "name": "kyte-analytics__analytics",
+    "name": "kyte-attribution__analytics",
     "type": "DATABASE",
     "disabled": false,
     "config": {
@@ -37,7 +37,7 @@
         "service_name": "mongodb-atlas",
         "skip_catchup_events": false,
         "tolerate_resume_errors": false,
-        "unordered": false
+        "unordered": true
     },
     "event_processors": {
         "FUNCTION": {
