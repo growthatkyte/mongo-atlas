@@ -1,5 +1,5 @@
 {
-    "name": "invoice_upsert_change_status",
+    "name": "kyte-admin__invoices__with-status",
     "type": "DATABASE",
     "disabled": false,
     "config": {
@@ -47,6 +47,7 @@
                 "$exists": true
             }
         },
+        "maximum_throughput": false,
         "operation_types": [
             "INSERT",
             "UPDATE",
