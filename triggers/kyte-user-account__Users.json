@@ -1,7 +1,7 @@
 {
     "name": "kyte-user-account__Users",
     "type": "DATABASE",
-    "disabled": true,
+    "disabled": false,
     "config": {
         "collection": "User",
         "database": "kyte-user-account",
