@@ -1,0 +1,33 @@
+{
+    "name": "kyte-admin__users-attribution",
+    "type": "DATABASE",
+    "disabled": true,
+    "config": {
+        "collection": "users-attribution",
+        "database": "kyte-admin",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "fullDocument.aid": {
+                "$exists": true
+            }
+        },
+        "maximum_throughput": false,
+        "operation_types": [
+            "INSERT",
+            "UPDATE"
+        ],
+        "project": {},
+        "service_name": "mongodb-atlas",
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "defaultSendToHub"
+            }
+        }
+    }
+}
