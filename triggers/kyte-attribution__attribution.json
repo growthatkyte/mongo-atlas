@@ -1,7 +1,7 @@
 {
     "name": "kyte-attribution__attribution",
     "type": "DATABASE",
-    "disabled": false,
+    "disabled": true,
     "config": {
         "collection": "attribution",
         "database": "kyte-attribution",
