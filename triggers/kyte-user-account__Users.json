@@ -40,7 +40,10 @@
             ],
             "fullDocument.email": {
                 "$not": {
-                    "$regex": "help[0-9]{1,}@kyte.com"
+                    "$regularExpression": {
+                        "options": "",
+                        "pattern": "^help[/+0-9]{3,}@kyte.com"
+                    }
                 }
             }
         },
