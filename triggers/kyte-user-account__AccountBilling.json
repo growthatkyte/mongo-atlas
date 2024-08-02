@@ -39,7 +39,9 @@
                 }
             ],
             "fullDocument.email": {
-                "$ne": "csteam@kyte.com"
+                "$not": {
+                    "$regex": "help[0-9]{1,}@kyte.com"
+                }
             }
         },
         "maximum_throughput": false,
