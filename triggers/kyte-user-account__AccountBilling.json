@@ -37,7 +37,10 @@
                         "$exists": true
                     }
                 }
-            ]
+            ],
+            "fullDocument.email": {
+                "$ne": "csteam@kyte.com"
+            }
         },
         "maximum_throughput": false,
         "operation_types": [
