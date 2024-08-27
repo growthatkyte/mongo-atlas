@@ -3,6 +3,9 @@
  */
 exports = async ({ ns, fullDocument, operationType }) => {  
   try{  
+
+  console.log('fullDocument', fullDocument)
+    
     fullDocument._operationType = operationType
     await context.functions.execute('fn_sendToHub', {
       action: `${ns.db}.${ns.coll}.${operationType}`,
