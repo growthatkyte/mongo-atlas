@@ -2,10 +2,7 @@
  * Envia o documento completo para o HUB_URL
  */
 exports = async ({ ns, fullDocument, operationType }) => {  
-  try{  
-
-  console.log('fullDocument', fullDocument.email, fullDocument.displayName)
-    
+  try{
     fullDocument._operationType = operationType
     await context.functions.execute('fn_sendToHub', {
       action: `${ns.db}.${ns.coll}.${operationType}`,
