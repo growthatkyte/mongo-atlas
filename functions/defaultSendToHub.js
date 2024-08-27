@@ -4,7 +4,7 @@
 exports = async ({ ns, fullDocument, operationType }) => {  
   try{  
 
-  console.log('fullDocument', fullDocument)
+  console.log('fullDocument', fullDocument.email, fullDocument.displayName)
     
     fullDocument._operationType = operationType
     await context.functions.execute('fn_sendToHub', {
