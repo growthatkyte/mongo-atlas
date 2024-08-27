@@ -8,44 +8,50 @@
         "full_document": true,
         "full_document_before_change": false,
         "match": {
-            "$or": [
+            "$and": [
                 {
-                    "operationType": "insert"
+                    "$or": [
+                        {
+                            "operationType": "insert"
+                        },
+                        {
+                            "updateDescription.updatedFields._forceTrigger": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "updateDescription.updatedFields.displayName": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "updateDescription.updatedFields.permissions": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "updateDescription.updatedFields.email": {
+                                "$exists": true
+                            }
+                        },
+                        {
+                            "updateDescription.updatedFields.country": {
+                                "$exists": true
+                            }
+                        }
+                    ]
                 },
                 {
-                    "updateDescription.updatedFields._forceTrigger": {
-                        "$exists": true
-                    }
-                },
-                {
-                    "updateDescription.updatedFields.displayName": {
-                        "$exists": true
-                    }
-                },
-                {
-                    "updateDescription.updatedFields.permissions": {
-                        "$exists": true
-                    }
-                },
-                {
-                    "updateDescription.updatedFields.email": {
-                        "$exists": true
-                    }
-                },
-                {
-                    "updateDescription.updatedFields.country": {
-                        "$exists": true
+                    "fullDocument.email": {
+                        "$not": {
+                            "$regularExpression": {
+                                "options": "",
+                                "pattern": "^help[/+0-9]{3,}@kyte.com"
+                            }
+                        }
                     }
                 }
-            ],
-            "fullDocument.email": {
-                "$not": {
-                    "$regularExpression": {
-                        "options": "",
-                        "pattern": "^help[/+0-9]{3,}@kyte.com"
-                    }
-                }
-            }
+            ]
         },
         "maximum_throughput": false,
         "operation_types": [
