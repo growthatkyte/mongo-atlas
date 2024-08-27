@@ -8,50 +8,44 @@
         "full_document": true,
         "full_document_before_change": false,
         "match": {
-            "$and": [
+            "$or": [
                 {
-                    "$or": [
-                        {
-                            "operationType": "insert"
-                        },
-                        {
-                            "updateDescription.updatedFields._forceTrigger": {
-                                "$exists": true
-                            }
-                        },
-                        {
-                            "updateDescription.updatedFields.displayName": {
-                                "$exists": true
-                            }
-                        },
-                        {
-                            "updateDescription.updatedFields.permissions": {
-                                "$exists": true
-                            }
-                        },
-                        {
-                            "updateDescription.updatedFields.email": {
-                                "$exists": true
-                            }
-                        },
-                        {
-                            "updateDescription.updatedFields.country": {
-                                "$exists": true
-                            }
-                        }
-                    ]
+                    "operationType": "insert"
                 },
                 {
-                    "fullDocument.email": {
-                        "$not": {
-                            "$regularExpression": {
-                                "options": "",
-                                "pattern": "^help[/+0-9]{3,}@kyte.com"
-                            }
-                        }
+                    "updateDescription.updatedFields._forceTrigger": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.displayName": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.permissions": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.email": {
+                        "$exists": true
+                    }
+                },
+                {
+                    "updateDescription.updatedFields.country": {
+                        "$exists": true
                     }
                 }
-            ]
+            ],
+            "fullDocument.email": {
+                "$not": {
+                    "$regularExpression": {
+                        "options": "",
+                        "pattern": "^help[/+0-9]{3,}@kyte.com"
+                    }
+                }
+            }
         },
         "maximum_throughput": false,
         "operation_types": [
