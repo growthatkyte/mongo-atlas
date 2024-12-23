@@ -33,6 +33,11 @@
                     "updateDescription.updatedFields.expireDate": {
                         "$exists": true
                     }
+                },
+                {
+                    "updateDescription.updatedFields.user": {
+                        "$exists": true
+                    }
                 }
             ]
         },
