@@ -4,7 +4,7 @@
 exports = async ({ ns, fullDocument, operationType }) => {  
 
 
-  console.log('defaultSendToHub', fullDocument, operationType)
+  console.log('defaultSendToHub', JSON.stringify(fullDocument), operationType)
   
   try{
     fullDocument._operationType = operationType
